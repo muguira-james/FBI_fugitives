@@ -22,12 +22,10 @@ fbiFugitives = open('fbi_wanted.html', 'rb').read()
 soup = BeautifulSoup(fbiFugitives)
 """
 
+outf = open('fbi_db.json', 'wb')
 data = soup.select('.focuspoint')
 print len(data)
-#
-# the json dictionary
-#
-detailsD = {}
+
 #
 # loop over the data
 #
@@ -45,6 +43,7 @@ for item in data:
     fileName = './images/' + faq.rpartition('/')[0].rpartition('/')[2] + '.jpg'
     img.save(fileName)
     badguyDetail['imageFile'] = fileName
+    badguyDetail['name'] = faq.rpartition('/')[0].rpartition('/')[2]
     #
     print faq
     detail = requests.get(faq)
@@ -92,8 +91,9 @@ for item in data:
     """
     Print out the dictionary for debug testing
     """
-    detailsD[faq.rpartition('/')[0].rpartition('/')[2]] = badguyDetail
-
-outf = open('fbi_db.json', 'wb')
-outf.write(json.dumps(detailsD))
+    fout = json.dumps(badguyDetail) + '\n'
+    outf.write(fout)
+#
+# done here close the output
+#
 outf.close()
