@@ -1,0 +1,15 @@
+{
+    "name": "fbi-explore",
+    "description": "this is exploring the fbi data set",
+    "main": "app.js",
+    "scripts": {
+        "start": "node app.js"
+    },
+    "dependencies": {
+        "express": "4.x",
+        "morgan": "1.0",
+        "mongoose": "3.x",
+        "body-parser": "1.x"
+    }
+
+}
